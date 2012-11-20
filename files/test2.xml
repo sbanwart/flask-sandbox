@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<order xmlns="http://rogue-technology.com/orders">
+    <id>5032</id>
+    <customer>05556</customer>
+    <total>1438.63</total>
+</order>
