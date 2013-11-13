@@ -1,4 +1,5 @@
-from urlparse import urljoin
+#from urlparse import urljoin
+from urllib.parse import urljoin
 from flask import Flask, request
 from werkzeug.contrib.atom import AtomFeed
 from time import gmtime, strftime
@@ -17,12 +18,13 @@ def make_external(url):
 def recent_feed():
     feed = AtomFeed('Orders', feed_url=request.url, url=request.url_root)
     for fname in files:
+        urlid = str(uuid1())
         testfile = open('./files/' + fname)
         feed.add("Order", 
-                        unicode(testfile.read()),
+                        testfile.read(),
                         content_type="xml",
                         author="edi",
-                        url=uuid1(),
+                        url=make_external(urlid),
                         updated=datetime.utcnow(),
                         published=datetime.utcnow())
     return feed.get_response()
